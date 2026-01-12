@@ -58,7 +58,7 @@ export default function WhyChooseUs() {
 
         {/* FEATURES GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {features.map((item, index) => (
+          {features.map((item:any, index:any) => (
             <div
               key={index}
               className="bg-white border rounded-2xl p-8 text-center hover:shadow-lg transition"
