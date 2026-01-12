@@ -21,6 +21,7 @@ export default function LoginForm() {
   const [state, dispatch] = useFormState(createUserWithCredentials, initialState);
 
   return (
+    
     <div className="flex-1 rounded-lg bg-gray-50 dark:bg-[#212121]
         px-6 pb-4 pt-8
       ">

@@ -151,28 +151,61 @@ function GitHubSignInButton() {
     <form action={GitHubSignIn}>
       <button
         type="submit"
-        className="flex h-11 w-full items-center gap-3 rounded-lg bg-black px-4
-        text-sm font-medium text-white hover:bg-gray-900 transition cursor-pointer"
+        className="
+          flex w-full items-center gap-2 sm:gap-3
+          rounded-lg bg-black px-3 sm:px-4
+          h-10 sm:h-11 md:h-12
+          text-xs sm:text-sm md:text-base
+          font-medium text-white
+          hover:bg-gray-900 transition cursor-pointer
+        "
       >
-        <Image src="/githublogo.png" width={40} height={40} alt="GitHub" className='filter brightness-0 invert' />
-        <span className="flex-1 text-left">Sign in with GitHub</span>
-        <ArrowRightIcon className="h-5 w-5" />
+        <Image
+          src="/githublogo.png"
+          width={40}
+          height={40}
+          alt="GitHub"
+          className="
+            w-10 h-10
+            sm:w-6 sm:h-6
+            md:w-7 md:h-7
+            filter brightness-0 invert
+          "
+        />
+
+        <span className="flex-1 text-left">
+          Sign in with GitHub
+        </span>
+
+        <ArrowRightIcon className="h-4 w-4 sm:h-5 sm:w-5" />
       </button>
     </form>
   );
 }
+
 
 function GoogleSignInButton() {
   return (
     <form action={GoogleSignIn}>
       <button
         type="submit"
-        className="mt-3 flex h-11 w-full items-center gap-3 rounded-lg
-        border bg-white px-4 text-sm font-medium hover:bg-gray-50 transition cursor-pointer"
+        className="
+          mt-3 flex w-full items-center gap-2 sm:gap-3 rounded-lg border bg-white px-3 sm:px-4 h-10 sm:h-11 md:h-12 text-xs sm:text-sm md:text-base font-medium hover:bg-gray-50 transition cursor-pointer
+        "
       >
-        <Image src="/google.jpg" width={22} height={22} alt="Google" />
-        <span className="flex-1 text-left">Sign in with Google</span>
-        <ArrowRightIcon className="h-5 w-5 text-gray-600" />
+        <Image
+          src="/google.jpg"
+          width={22}
+          height={22}
+          alt="Google"
+          className=" w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+        />
+
+        <span className="flex-1 text-left">
+          Sign in with Google
+        </span>
+
+        <ArrowRightIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
       </button>
     </form>
   );
