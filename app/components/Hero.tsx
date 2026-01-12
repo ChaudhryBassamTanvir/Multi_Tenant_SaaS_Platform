@@ -26,7 +26,7 @@ export default function Hero() {
       <div className="flex justify-center">
         <div className="bg-white rounded-2xl shadow-md p-4">
           <Image
-            src="/hero.png"
+            src="/heroImage.jpg"
             alt="Nimbus Dashboard"
             width={520}
             height={360}
