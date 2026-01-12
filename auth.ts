@@ -23,9 +23,9 @@ async function getUser(email: string): Promise<User | undefined> {
 }
  
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  ...authConfig,
+  ...authConfig, //spread operator 
   providers: [
-    Credentials({
+    Credentials({ //this run when user submit login form 
       async authorize(credentials) {
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })

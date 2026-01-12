@@ -11,7 +11,7 @@ import { Button } from '@/app/ui/button';
 import Image from 'next/image';
 import { useFormState, useFormStatus } from 'react-dom';
 // import { authenticateWithCredentials, authenticateWithOAuth } from '@/app/lib/actions';
-import { authenticateWithCredentials,authenticateWithOAuth} from '../lib/action';
+import { authenticateWithCredentials,authenticateWithOAuth} from '../lib/actions';
 import darkTheme from '../lib/dark-theme';
 import { useRouter } from 'next/navigation';
 import Navbar from '../components/Navbar';
@@ -162,15 +162,15 @@ function GitHubSignInButton() {
       >
         <Image
           src="/githublogo.png"
-          width={40}
-          height={40}
+          width={32}
+          height={32}
           alt="GitHub"
           className="
-            w-10 h-10
-            sm:w-6 sm:h-6
-            md:w-7 md:h-7
+            w-8 h-8
             filter brightness-0 invert
-          "
+            "
+            // sm:w-6 sm:h-6
+            // md:w-7 md:h-7
         />
 
         <span className="flex-1 text-left">

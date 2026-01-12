@@ -12,7 +12,7 @@ import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
 import { useFormState } from 'react-dom';
 // import { createUserWithCredentials } from '@/app/lib/actions';
-import { createUserWithCredentials } from '../lib/action';
+import { createUserWithCredentials } from '../lib/actions';
 import darkTheme from '../lib/dark-theme';
 import { useRouter } from 'next/navigation';
  
@@ -21,7 +21,7 @@ export default function LoginForm() {
   const [state, dispatch] = useFormState(createUserWithCredentials, initialState);
 
   return (
-    
+
     <div className="flex-1 rounded-lg bg-gray-50 dark:bg-[#212121]
         px-6 pb-4 pt-8
       ">
