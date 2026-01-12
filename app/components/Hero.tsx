@@ -1,5 +1,6 @@
 import { FiArrowRight } from "react-icons/fi";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -16,10 +17,13 @@ export default function Hero() {
           , brought to you by Nimbus.
         </h1>
 
-        <button className="mt-8 inline-flex items-center gap-3 bg-violet-600 text-white px-7 py-3 rounded-xl hover:bg-violet-700 transition hover:cursor-pointer">
+<Link href="/logIn">
+  <button className="mt-8 inline-flex items-center gap-3 bg-violet-600 text-white px-7 py-3 rounded-xl hover:bg-violet-700 transition hover:cursor-pointer">
           Log in
           <FiArrowRight size={18} />
         </button>
+</Link>
+      
       </div>
 
       {/* RIGHT PREVIEW */}
