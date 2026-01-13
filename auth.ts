@@ -4,78 +4,53 @@ import Credentials from 'next-auth/providers/credentials';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { z } from 'zod';
-import bcrypt from 'bcrypt';
+import { sql } from '@vercel/postgres';
 import type { User } from '@/app/lib/definitions';
-import { query } from '@/app/lib/db.server';
-
-export const runtime = 'nodejs';
+import bcrypt from 'bcrypt';
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
-    const res = await query(
-      'SELECT * FROM users2 WHERE email = $1',
-      [email]
-    );
-
-    if (res.rowCount === 0) return undefined;
-
-    const user = res.rows[0];
-
-    if (user.isoauth === true) {
-      throw new Error(
-        'User tried to login using OAuth without setting a password'
-      );
+    const user = await sql<User>`SELECT * FROM users2 WHERE email=${email}`;
+    if (user.rows[0].isoauth === true) {
+      throw new Error('User has tryied to login using an OAuth account without defining a password first');
     }
 
-    return user;
+    return user.rows[0];
   } catch (error) {
-    console.error(error);
+    console.log(error);
     throw new Error('Failed to fetch user.');
   }
 }
-
+ 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  ...authConfig,
+  ...authConfig, //spread operator 
   providers: [
-    Credentials({
+    Credentials({ //this run when user submit login form 
       async authorize(credentials) {
         const parsedCredentials = z
-          .object({
-            email: z.string().email(),
-            password: z.string().min(6),
-          })
+          .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
-
-        if (!parsedCredentials.success) return null;
-
-        const { email, password } = parsedCredentials.data;
-
-        const user = await getUser(email);
-        if (!user) return null;
-
-        const passwordsMatch = await bcrypt.compare(
-          password,
-          user.password
-        );
-
-        if (!passwordsMatch) return null;
-
-        return {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-        };
+ 
+        if (parsedCredentials.success) {
+          const { email, password } = parsedCredentials.data;
+          const user = await getUser(email);
+          if (!user) return null;
+          const passwordsMatch = await bcrypt.compare(password, user.password);
+  
+          if (passwordsMatch) return user;
+        }
+  
+        console.log('Invalid credentials');
+        return null;
       },
     }),
-
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+      clientSecret: process.env.GITHUB_SECRET as string
     }),
-
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
-      clientSecret: process.env.GOOGLE_SECRET as string,
-    }),
+      clientSecret: process.env.GOOGLE_SECRET as string
+    })
   ],
 });

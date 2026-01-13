@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 
 import { lusitana } from '../ui/font';
 import {
@@ -26,10 +27,11 @@ function GoogleSignIn() {
 }
 
 export default function LoginForm() {
-  const [errorMessage, dispatch] = useFormState(
-    authenticateWithCredentials,
-    undefined
-  );
+const [errorMessage, dispatch] = React.useActionState(
+  authenticateWithCredentials,
+  undefined
+);
+
 
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
