@@ -189,7 +189,7 @@ export async function authenticateWithCredentials(
 ) {
   try {
     await signIn('credentials', formData);
-  } catch (error) {
+  } catch (error:any) {
     if (error instanceof AuthError) {
       return 'Invalid credentials';
     }
