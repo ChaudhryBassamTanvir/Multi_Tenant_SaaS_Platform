@@ -16,7 +16,7 @@ type SidebarProps = {
 
 const Sidebar: React.FC<SidebarProps> = ({ selectedPage, setSelectedPage }) => {
   const menuItems = [
-    { name: 'Dashboard', icon: <HomeIcon className="w-5 h-5 text-violet-600" /> },
+    { name: 'Dashboard', icon: <HomeIcon className="w-5 h-5 text-violet-600 " /> },
     { name: 'Customers', icon: <UsersIcon className="w-5 h-5 text-violet-600" /> },
     { name: 'Invoices', icon: <DocumentTextIcon className="w-5 h-5 text-violet-600" /> },
   ];
@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedPage, setSelectedPage }) => {
             }`}
           >
             {item.icon}
-            <span className='text-violet-600 hover:text-white'>{item.name}</span>
+            <span className='text-violet-600 '>{item.name}</span>
           </button>
         ))}
       </nav>
