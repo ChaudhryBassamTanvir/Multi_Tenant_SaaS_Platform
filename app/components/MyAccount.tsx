@@ -2,49 +2,45 @@ import React from 'react';
 import { User } from 'lucide-react';
 
 const MyAccount = () => {
-  const userName = 'Chaudhry Bassam';
+  const userName = 'Haneen';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-100 via-purple-100 to-indigo-100 flex items-center justify-center p-6">
-      
-      <div className="w-full max-w-lg bg-white/70 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-white/40">
+    <div className="min-h-screen bg-[#f7f8fc] px-8 py-10">
 
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="h-14 w-14 rounded-full bg-gradient-to-tr from-violet-500 to-indigo-500 flex items-center justify-center text-white shadow-lg">
-            <User size={26} />
-          </div>
+      {/* Page Title */}
+      <h1 className="text-3xl font-semibold text-gray-900 mb-2">
+        My Account
+      </h1>
 
-          <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-              My Account
-            </h1>
-            <p className="text-gray-600 text-sm">
-              Personal profile & account information
-            </p>
-          </div>
-        </div>
+      {/* Subtitle */}
+      <p className="text-sm text-violet-600 mb-8">
+        Manage your personal information and account details
+      </p>
 
-        {/* Info Card */}
-        <div className="bg-white rounded-xl p-5 shadow-md border border-gray-100">
-          <label className="block text-sm font-semibold text-gray-500 mb-2">
-            Full Name
-          </label>
+      {/* Content Card */}
+      <div className="max-w-xl bg-white rounded-xl shadow-sm border border-gray-200 p-6">
 
+        {/* Name Field */}
+        <label className="block text-sm font-medium text-gray-600 mb-2">
+          Full Name
+        </label>
+
+        <div className="relative">
           <input
             type="text"
             value={userName}
             disabled
-            className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 text-gray-800 font-medium focus:outline-none"
+            className="w-full px-4 py-3 pr-11 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 focus:outline-none"
+          />
+
+          {/* Icon */}
+          <User
+            size={18}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
           />
         </div>
 
-        {/* Footer Text */}
-        <p className="text-center text-xs text-gray-500 mt-6">
-          Your information is securely stored and protected
-        </p>
       </div>
-
     </div>
   );
 };
