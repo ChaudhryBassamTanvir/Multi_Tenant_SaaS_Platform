@@ -1,4 +1,3 @@
-'use client'
 import { z } from 'zod';
 // import { query } from './db.server';
 import { query } from './db.server';

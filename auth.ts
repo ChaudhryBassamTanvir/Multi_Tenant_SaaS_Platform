@@ -1,3 +1,4 @@
+'use server';
 
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
@@ -23,7 +24,7 @@ async function getUser(email: string): Promise<User | undefined> {
   }
 }
  
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export   const { handlers, auth, signIn, signOut } = await NextAuth({
   ...authConfig, //spread operator 
   providers: [
     Credentials({
