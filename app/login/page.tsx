@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useActionState } from 'react';
 
 import { lusitana } from '../ui/font';
 import {
@@ -27,9 +27,10 @@ function GoogleSignIn() {
 }
 
 export default function LoginForm() {
-const [errorMessage, dispatch] = React.useActionState(
+const [errorMessage, dispatch] = useActionState(
   authenticateWithCredentials,
-  undefined
+  undefined, // first argument placeholder
+  // optional
 );
 
 

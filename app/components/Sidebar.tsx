@@ -8,6 +8,7 @@ import {
   DocumentTextIcon,
   ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline';
+import { CgProfile } from "react-icons/cg";
 
 type SidebarProps = {
   selectedPage: string;
@@ -19,6 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedPage, setSelectedPage }) => {
     { name: 'Dashboard', icon: <HomeIcon className="w-5 h-5 text-violet-600 " /> },
     { name: 'Customers', icon: <UsersIcon className="w-5 h-5 text-violet-600" /> },
     { name: 'Invoices', icon: <DocumentTextIcon className="w-5 h-5 text-violet-600" /> },
+    { name: 'My Account', icon: <CgProfile  className="w-5 h-5 text-violet-600" /> },
   ];
 
   return (
@@ -40,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedPage, setSelectedPage }) => {
         
       </div>
       <nav className="flex-1 px-3 bg-white  space-y-2 mt-10">
-        {menuItems.map((item) => (
+        {menuItems.map((item:any) => (
           <button
             key={item.name}
             onClick={() => setSelectedPage(item.name)}

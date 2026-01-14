@@ -1,3 +1,4 @@
+
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
@@ -25,24 +26,26 @@ async function getUser(email: string): Promise<User | undefined> {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig, //spread operator 
   providers: [
-    Credentials({ //this run when user submit login form 
+    Credentials({
+      //this run when user submit login form 
       async authorize(credentials) {
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
- 
+
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
           if (!user) return null;
           const passwordsMatch = await bcrypt.compare(password, user.password);
-  
+
           if (passwordsMatch) return user;
         }
-  
+
         console.log('Invalid credentials');
         return null;
       },
+      credentials: undefined
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,

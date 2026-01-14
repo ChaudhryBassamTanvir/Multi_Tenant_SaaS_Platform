@@ -1,13 +1,11 @@
-'use server';
-
+'use client'
 import { z } from 'zod';
 // import { query } from './db.server';
 import { query } from './db.server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
-import { AuthError } from 'next-auth';
-// import AuthError
+// import AuthError from 'next-auth';
 import bcrypt from 'bcrypt';
 
 /* -------------------- VALIDATION -------------------- */
@@ -190,14 +188,13 @@ export async function authenticateWithCredentials(
 ) {
   try {
     await signIn('credentials', formData);
-  } catch (error:any) {
-    if (error instanceof AuthError) {
-      return 'Invalid credentials';
+  } catch (error: any) {
+    if (error?.type === 'CredentialsSignin') {
+      return 'Invalid email or password';
     }
     throw error;
   }
 }
-
 export async function authenticateWithOAuth(provider: string) {
   await signIn(provider);
 }
