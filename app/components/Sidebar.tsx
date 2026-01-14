@@ -90,13 +90,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedPage, setSelectedPage }) => {
         </div>
       </div>
 
-      {/* Overlay for mobile */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      {/* ⚡ No overlay anymore */}
     </>
   );
 };
